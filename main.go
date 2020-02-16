@@ -10,7 +10,7 @@ import (
 
 const (
 	exitFail = 1
-	argCount = 2
+	argCount = 1
 )
 
 func main() {
@@ -35,11 +35,11 @@ func run(args []string, stdout io.Writer) error {
 		fmt.Println("verbose mode activated")
 	}
 
-	if len(args) < argCount {
+	if len(flags.Args()) < argCount {
 		return errors.New("no names provided")
 	}
 
-	for _, name := range args[1:] {
+	for _, name := range flags.Args() {
 		fmt.Fprintf(stdout, *format, name)
 	}
 
